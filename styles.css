@@ -133,6 +133,9 @@ dialog{border:0;border-radius:24px;padding:36px;color:var(--wine);background:var
     background:linear-gradient(to bottom,#f2c8c4 0,#ffdada calc(42 * var(--u)),#fcede6 100%);
   }
   .page-classes .benefit-wave{top:auto;bottom:calc(100% - 1px)}
+  .page-classes .classes-intro .intro-copy{
+    transform:translateY(calc(-8 * var(--u)));
+  }
   .page-classes .classes-intro .intro-copy>p:last-child{
     transform:translateY(calc(-6 * var(--u)));
   }
