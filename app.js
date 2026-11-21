@@ -2,6 +2,13 @@ import { assets } from './assets.js?v=2';
 import { crops, sizes } from './design-data.js?v=2';
 
 const pages = [['home', 'Home'], ['about', 'About Me'], ['classes', 'Kelas & Coaching'], ['business', 'Karya & Bisnis'], ['activities', 'Aktivitas']];
+const socialLinks = {
+  Whatsapp: 'https://wa.me/+628113221969',
+  Facebook: 'https://www.facebook.com/LailiWaiteuOfficial/',
+  Instagram: 'https://www.instagram.com/lailipur/',
+  Youtube: 'https://www.youtube.com/@lailipur',
+  Tiktok: 'https://www.tiktok.com/@lailipurnama_'
+};
 const socialNames = ['Whatsapp', 'Facebook', 'Instagram', 'Youtube', 'Tiktok'];
 const socialKeys = ['imgMaskGroup', 'imgAntDesignFacebookFilled', 'imgAntDesignInstagramFilled', 'imgGroup1', 'imgIconoirTiktokSolid'];
 const app = document.querySelector('#app');
@@ -30,10 +37,10 @@ function nav(bottom = false) {
   return `<nav class="${bottom ? 'bottom-nav' : 'desktop-nav'}" aria-label="${bottom ? 'Navigasi bawah' : 'Navigasi utama'}">${pages.map(([key, label]) => `<a href="#/${key}" ${key === current ? 'aria-current="page"' : ''}>${label.replace(' & ', ' &amp; ')}${key === current ? art(current,underline,'nav-underline') : ''}</a>`).join('')}</nav>`;
 }
 function header() {
-  return `<header class="header"><a href="#/home" class="logo" aria-label="Lailipur — Home">${photo(current, 'imgLailipurWhite1', 'Lailipur')}</a>${nav()}<button class="contact-button" data-contact="Halo, saya ingin mengenal Lailipur lebih dekat." aria-label="Hubungi Lailipur melalui Whatsapp">${art(current, 'imgWhatsappIconlyPro')}<span>Whatsapp</span></button></header>`;
+  return `<header class="header"><a href="#/home" class="logo" aria-label="Lailipur — Home">${photo(current, 'imgLailipurWhite1', 'Lailipur')}</a>${nav()}<a class="contact-button" href="${socialLinks.Whatsapp}" target="_blank" rel="noopener noreferrer" aria-label="Hubungi Lailipur melalui Whatsapp">${art(current, 'imgWhatsappIconlyPro')}<span>Whatsapp</span></a></header>`;
 }
 function socials(page, labels = false) {
-  return `<div class="socials ${labels ? 'with-labels' : ''}">${socialNames.map((name, i) => `<button class="social" data-social="${name}" aria-label="${name} Lailipur">${art(page, socialKeys[i], `social-icon icon-${i}`)}${labels ? `<span>${name}</span>` : ''}</button>`).join('')}</div>`;
+  return `<div class="socials ${labels ? 'with-labels' : ''}">${socialNames.map((name, i) => `<a class="social" href="${socialLinks[name]}" target="_blank" rel="noopener noreferrer" aria-label="${name} Lailipur">${art(page, socialKeys[i], `social-icon icon-${i}`)}${labels ? `<span>${name}</span>` : ''}</a>`).join('')}</div>`;
 }
 function flourish(page, key, cls = '') { return art(page, key, `flourish ${cls}`); }
 function ribbon(page, title, cls = '') {
@@ -132,15 +139,13 @@ function openDialog(title, body) {
   dialog.querySelectorAll('.art').forEach(el=>observer.observe(el));
 }
 function contact(message) {
-  openDialog('Hubungi Lailipur', `<p>${esc(message)}</p><p>Nomor WhatsApp resmi belum tersedia di desain. Salin pesan ini dan kirimkan melalui kontak resmi Lailipur yang Bunda miliki.</p><button class="pill" data-copy="${esc(message)}">Salin pesan</button><p class="copy-status" role="status"></p>`);
+  window.open(`${socialLinks.Whatsapp}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
 }
-document.addEventListener('click', async event => {
+document.addEventListener('click', event => {
   const button=event.target.closest('button'); if(!button) return;
   if(button.matches('.dialog-close')) return dialog.close();
   const d=button.dataset;
   if(d.contact) return contact(d.contact);
-  if(d.copy) {try{await navigator.clipboard.writeText(d.copy);dialog.querySelector('.copy-status').textContent='Pesan disalin.';}catch{dialog.querySelector('.copy-status').textContent=d.copy;}return;}
-  if(d.social) return openDialog(`${d.social} Lailipur`, `<p>Tautan ${esc(d.social)} resmi belum dicantumkan di desain. Gunakan akun resmi Lailipur yang sudah Bunda kenal.</p>`);
   if(d.program !== undefined) {const p=programs[+d.program];return openDialog(p[0],`${photo('classes',p[2],p[0],'dialog-photo')}<p>${p[1]}</p>${btn('Tanyakan program ini',`data-contact="Halo, saya ingin tahu lebih lanjut tentang ${p[0]}."`)}`);}
   if(d.story !== undefined) {const p=storyCards[+d.story];return openDialog(p[0],`${photo('home',p[2],p[0],'dialog-photo')}<p>${p[1]}</p><a class="pill" href="#/activities" data-close>Lihat aktivitas Miss Laili</a>`);}
   if(d.activity !== undefined) {const p=activities[+d.activity];return openDialog(p[0],`${photo('activities',p[2],p[0],'dialog-photo')}<p>${p[1]}</p>`);}
