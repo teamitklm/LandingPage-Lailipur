@@ -20,7 +20,7 @@ Open http://localhost:4173. No package installation or build is needed.
 - Karya & Bisnis: two brands and two production galleries.
 - Aktivitas: activity cards and social contact controls.
 
-Navigation uses hash routes, supports browser history, and works on static hosting. Dialogs support keyboard focus and Escape. Mobile carousels use native horizontal scrolling and scroll snapping.
+Navigation uses hash routes, supports browser history, and works on static hosting. Dialogs support keyboard focus and Escape. Mobile carousels use native horizontal scrolling and scroll snapping. The mobile bottom navigation floats above the screen edge while scrolling, with reserved space below the content.
 
 ## Assets and typography
 
@@ -30,7 +30,7 @@ Montserrat and Cormorant Garamond are bundled from Google Fonts. Apple Garamond 
 
 ## Contact configuration
 
-The supplied design did not provide usable official WhatsApp or social URLs. Contact controls currently show this limitation and let visitors copy a program inquiry. Add verified destination links in `dist/app.js` to activate outgoing contact navigation.
+Official WhatsApp, Facebook, Instagram, YouTube, and TikTok destinations are configured in `dist/app.js` using the links supplied by the site owner. Social links open in a new tab. Class and brand inquiry buttons open WhatsApp with the relevant inquiry prefilled.
 
 ## Design reference
 
