@@ -95,7 +95,7 @@ function classes() {
   return `${intro('classes','Yuk Belajar dan Naik Kelas!','Bunda, setiap impian butuh ilmu, keberanian, dan langkah nyata untuk diwujudkan. Melalui kelas dan coaching bersama Miss Laili, Bunda bisa belajar strategi bisnis, mengembangkan kemampuan, dan membangun usaha dengan lebih terarah.')}
   <section class="class-programs">${contours('classes')}${ribbon('classes','Program Pilihan untuk Bunda')}<p class="section-intro">Setiap langkah punya ruang belajarnya sendiri.<br>Pilih kelas yang sesuai dengan perjalanan Bunda.</p><div class="feature-track" tabindex="0" aria-label="Program belajar, geser untuk melihat semua"><div class="feature-grid">${programs.map((p,i)=>featureCard('classes',p,i)).join('')}</div></div></section>
   <section class="class-benefits">${wave('classes',mobile() ? 'imgRectangle383' : 'imgRectangle42','benefit-wave')}<h2>Kenapa Belajar Bersama Miss Laili?</h2><div class="benefit-grid">${[['Ilmu Praktis','imgGroup'],['Pendampingan','imgFaSolidUserFriends'],['Komunitas','imgGroup1']].map(([title,key])=>`<div>${art('classes',key)}<h3>${title}</h3></div>`).join('')}</div><p>Belajar bukan hanya tentang mendapatkan materi,<br>tetapi juga membangun keberanian untuk mulai bergerak.</p></section>
-  <section class="class-cta">${art('classes','imgRectangle329','class-cta-background')}<h2>Bunda, Sudah Siap Memulai Perjalanan Baru?</h2><p>Yuk, pilih kelas yang sesuai dengan kebutuhan Bunda.<br>Tim Lailipur siap membantu memberikan informasi program.</p>${btn('Konsultasi Kelas','data-contact="Halo, saya ingin berkonsultasi tentang kelas Lailipur."','light')}</section>`;
+  <section class="class-cta">${art('classes','imgRectangle329','class-cta-background')}<h2>Bunda, Sudah Siap Memulai Perjalanan Baru?</h2><p>Yuk, pilih kelas yang sesuai dengan kebutuhan Bunda.<br>Tim Lailipur siap membantu memberikan informasi program.</p><a id="class-consultation" class="pill light" href="https://link.lailibrand.id/GabungMitra" target="_blank" rel="noopener noreferrer">Konsultasi Kelas</a></section>`;
 }
 const brandIntro = 'Berawal dari keinginan menghadirkan produk berkualitas dan kesempatan bertumbuh bagi lebih banyak keluarga.';
 const brands = [['Laili Brand','Produk kesehatan, kecantikan, dan kebutuhan keluarga yang dirancang untuk menemani keseharian.','imgRectangle331'],['Layali','Koleksi busana muslim, sarimbit keluarga, dan mukena untuk melengkapi momen istimewa.','imgRectangle334']];
@@ -146,6 +146,12 @@ document.addEventListener('click', event => {
   if(button.matches('.dialog-close')) return dialog.close();
   const d=button.dataset;
   if(d.contact) return contact(d.contact);
+  if(d.program !== undefined && current === 'classes') {
+    const consultation = document.querySelector('#class-consultation');
+    consultation.focus({preventScroll:true});
+    consultation.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',block:'center'});
+    return;
+  }
   if(d.program !== undefined) {const p=programs[+d.program];return openDialog(p[0],`${photo('classes',p[2],p[0],'dialog-photo')}<p>${p[1]}</p>${btn('Tanyakan program ini',`data-contact="Halo, saya ingin tahu lebih lanjut tentang ${p[0]}."`)}`);}
   if(d.story !== undefined) {const p=storyCards[+d.story];return openDialog(p[0],`${photo('home',p[2],p[0],'dialog-photo')}<p>${p[1]}</p><a class="pill" href="#/activities" data-close>Lihat aktivitas Miss Laili</a>`);}
   if(d.activity !== undefined) {const p=activities[+d.activity];return openDialog(p[0],`${photo('activities',p[2],p[0],'dialog-photo')}<p>${p[1]}</p>`);}
