@@ -1,137 +1,177 @@
-# Lailipur Website
+# Laili Brand Website
 
-An Indonesian-language website introducing Laili Purnamasari, her coaching programs, business journey, brands, and activities. The package includes the complete editable static website, with responsive desktop and mobile layouts.
+A responsive, Indonesian-language landing page introducing Laili Brand, its family-focused products, partnership opportunities, and free seminars. Built with plain HTML, CSS, and JavaScript, it runs as a static website without a database, backend, or build step.
 
 ## Design reference
 
-Based on the [Lailipur design in Figma](https://www.figma.com/design/qxtxokmFowVKcoGkR9hY46/Landing-Page-UI-Kit-Fix?node-id=137-323).
+Based on the [Laili Brand landing page in Figma](https://www.figma.com/design/qxtxokmFowVKcoGkR9hY46/Landing-Page-UI-Kit?node-id=1-2), desktop screen `1:2` (1440px) and mobile screen `104:532` (412px). The mobile layout now follows the dedicated mobile frame, including its header, centered sections, imagery, and compact typography. Figma node IDs remain in the HTML as `data-node-id` attributes for design traceability.
 
-Desktop frames: Home `137:323`, About Me `137:11`, Kelas & Coaching `137:87`, Karya & Bisnis `137:176`, and Aktivitas `137:240`.
+## Website sections
 
-Mobile frames: Home `134:6`, About Me `140:641`, Kelas & Coaching `145:2`, Karya & Bisnis `145:153`, and Aktivitas `145:262`.
+| Section      | Content                                            | Anchor          |
+| ------------ | -------------------------------------------------- | --------------- |
+| Home         | Brand introduction and navigation                  | `#home`         |
+| About        | Introduction to Laili Brand                        | `#about`        |
+| Five pillars | Family and relationship values                     | `#pillars`      |
+| Partnership  | Business opportunities and consultation            | `#partnership`  |
+| Social media | Facebook, Instagram, and TikTok                    | `#social`       |
+| Products     | Scrollable product showcase                        | `#products`     |
+| Free seminar | Seminar promotion and registration link            | `#seminar`      |
+| Testimonials | Horizontally scrollable partner video testimonials | `#testimonials` |
+| Mission      | “Menuju 1 Juta Keluarga Berdaya”                   | `#mission`      |
+| Footer       | Address, contact information, and utility labels   | `#contact`      |
+
+The product showcase includes Milk Mee, Waiteu, Layali, SOP Laili, Laili Slim, and Laili Genwhite Series.
 
 ## Features
 
-- Five pages: Home, About Me, Kelas & Coaching, Karya & Bisnis, and Aktivitas.
-- Dedicated desktop and mobile compositions based on the Figma design.
-- Floating bottom navigation on mobile that stays visible while scrolling.
-- Profile, credentials, program previews, and activity stories.
-- About Me introduction, photo gallery, beliefs, and personal message.
-- Four coaching programs with buttons that scroll to the Konsultasi Kelas button.
-- Konsultasi Kelas opens the GabungMitra registration page.
-- Laili Brand and Layali introductions with production and team galleries.
-- Photo and content dialogs with keyboard focus and Escape closing.
-- Native horizontal scrolling and scroll snapping for mobile card lists.
-- Official WhatsApp, Facebook, Instagram, YouTube, and TikTok links.
-- Local image, SVG, and font assets.
-- A separate 390px mobile preview that can be viewed from a desktop browser.
+- Responsive desktop and mobile layouts.
+- A mobile header with an accessible hamburger menu, centered hero text, and the mobile-specific family photo.
+- In-page navigation and a catalogue dropdown linking to Milk Mee and Layali.
+- Scrollable product and testimonial sections with previous/next controls and position indicators.
+- Video testimonial cards for Bu Siti Rahmah, Bu Sukriani, and Bu Wahyu, in Figma order. Tapping a card opens a larger player with sound, seeking, and native video controls. Closing the player stops playback.
+- Laili Brand registration links for partnership enquiries, consultation, and seminars.
+- Social media and footer contact links.
+- Local images, SVGs, and Montserrat font files, without temporary Figma asset URLs at runtime.
+- Keyboard focus styles, labelled carousel controls, and reduced-motion styling.
 
-The separate Laili Brand and Layali websites are outside this package.
+## Run locally
 
-## Package structure
+### Open directly
 
-```text
-lailipur/
-├── README.md
-├── .gitignore
-└── dist/                       # Complete editable and publishable website
-    ├── index.html              # Website entry page
-    ├── mobile-preview.html     # Fixed-width mobile preview
-    ├── app.js                  # Page content, navigation, buttons, and dialogs
-    ├── styles.css              # Desktop and mobile styling
-    ├── fonts.css               # Local font declarations
-    ├── assets.js               # Page-to-asset mappings
-    ├── design-data.js          # Image crops and artwork dimensions
-    └── assets/                 # Website imagery, SVGs, and font files
-```
+Open `index.html` in a modern browser. Keep the CSS, JavaScript, and `assets/` folder beside it so relative paths continue to work. No package installation is required.
 
-There is no separate React/Vite project or build step. The files in `dist/` are both the editable source and the ready-to-publish website. No dependency installation is required.
+### Use a local server
 
-## Publish on GitHub Pages
-
-1. Extract `lailipur-source.zip` and open its `lailipur` folder.
-2. Create a GitHub repository, or open your existing Lailipur repository.
-3. Upload the **contents of `dist/`** into the repository root. The root must contain `index.html`, `app.js`, `styles.css`, and `assets/` directly, rather than inside an extra `dist` or `lailipur` folder.
-4. Add this document to the repository root as `README.md`.
-5. Commit the files.
-6. In the repository's Pages settings, select deployment from a branch, choose the branch containing your files, and select `/(root)` as the publishing folder.
-7. Save and open the published URL after deployment finishes.
-
-All website files use relative asset paths and hash navigation. Keep the files together so images, fonts, scripts, and styles continue to load when publishing under a repository name.
-
-These instructions publish the contents of `dist/` at the repository root. If you retain the original package structure instead, your deployment must publish `dist/` through a configured workflow or static hosting service.
-
-### Hidden files
-
-An optional empty `.nojekyll` file can be added to the published repository root to bypass Jekyll processing. It contains no text.
-
-The source package's `.gitignore` excludes local workflow state, ZIP archives, and Python cache files. It is not needed to display the website. Do not ignore the website files you intend to publish.
-
-## Preview locally
-
-From the extracted `lailipur` folder, run:
-
-```sh
-python -m http.server 8080 --directory dist
-```
-
-Open `http://localhost:8080`. On Windows, `py` can be used instead of `python`. Stop the server with `Ctrl+C`.
-
-If you already copied the contents of `dist/` into your repository root, run this from the repository root instead:
+For development, open a terminal inside this folder and run:
 
 ```sh
 python -m http.server 8080
 ```
 
-Use a local web server rather than opening `index.html` directly, because the website loads JavaScript modules.
+On Windows, you can also use the Python launcher:
 
-## Mobile preview
-
-The main website automatically switches to its mobile layout on narrow screens. To view a fixed-width phone preview on desktop, open:
-
-```text
-http://localhost:8080/mobile-preview.html
+```powershell
+py -m http.server 8080
 ```
 
-You can select a page using the query string:
+Open [http://localhost:8080](http://localhost:8080). Press `Ctrl+C` in the terminal to stop the server. Python is only needed for this optional server, not for the website itself.
+
+## Project structure
 
 ```text
-mobile-preview.html?page=home
-mobile-preview.html?page=about
-mobile-preview.html?page=classes
-mobile-preview.html?page=business
-mobile-preview.html?page=activities
+laili-landing-page/
+├── index.html       # Content, sections, navigation, and image references
+├── styles.css       # Base styling translated from Figma layers
+├── layout.css       # Responsive layouts and component overrides
+├── mobile-art.css   # Fluid About and Seminar illustrations on phones
+├── mobile-hero.css  # Earlier hero overrides superseded by mobile-design.css
+├── mobile-design.css # Dedicated 412px Figma mobile design, loaded last
+├── video-testimonials.css # Video card and player styling, loaded after mobile styles
+├── app.js           # Carousel interactions and artwork scaling
+├── assets/          # Local PNG/SVG images and font files
+│   ├── videos/      # Three MP4 testimonials and their JPG preview images
+│   ├── Montserrat.ttf
+│   └── Montserrat-OFL.txt
+└── README.md
 ```
 
-Use the `.html` filename on GitHub Pages; the extensionless `/mobile-preview` address used by the hosted Site may not resolve on other hosts.
+`styles.css` loads before `layout.css`. Preserve this order: the second stylesheet adapts the exported layer styles into responsive content groups.
 
-## Links and button behavior
+## Customize
 
-| Button | Destination |
-| --- | --- |
-| WhatsApp | https://wa.me/+628113221969 |
-| Facebook | https://www.facebook.com/LailiWaiteuOfficial/ |
-| Instagram | https://www.instagram.com/lailipur/ |
-| YouTube | https://www.youtube.com/@lailipur |
-| TikTok | https://www.tiktok.com/@lailipurnama_ |
-| Konsultasi Kelas | https://link.lailibrand.id/GabungMitra |
+### Text and sections
 
-The four Kenali program buttons on Kelas & Coaching scroll to Konsultasi Kelas. The consultation button opens GabungMitra in a new tab. Other WhatsApp inquiry controls open the supplied WhatsApp number with the relevant inquiry prefilled.
+Edit the content in `index.html`. Section IDs and `data-node-id` attributes help identify elements. Preserve anchor IDs unless you also update the links pointing to them.
 
-Social destinations are configured in the `socialLinks` object in `app.js`. The Konsultasi Kelas destination is configured in the `classes()` function in the same file.
+### Colors and spacing
 
-## Editing the website
+The main color variables are defined in `styles.css`:
 
-- Edit page copy, contact links, and interactions in `app.js`.
-- Edit layouts, colors, spacing, and responsive behavior in `styles.css`.
-- Keep asset mappings in `assets.js` consistent when replacing images.
-- Preserve crop and dimension settings in `design-data.js` unless intentionally changing the artwork framing.
-- After editing JavaScript or CSS, update the corresponding version query in `index.html` so returning visitors load the latest files.
+```css
+:root {
+  --brand: #9f1a1a;
+  --blush: #ffdada;
+}
+```
 
-Paths above refer to the website folder: `dist/` in the source ZIP, or the repository root after following the publishing steps.
+Some exported gradients contain literal colors, so changing these variables alone will not recolor every layer. Use `layout.css` for layout, spacing, and responsive adjustments.
 
-## Assets and typography
+The mobile breakpoint is 760px. `mobile-design.css` scales the dedicated 412px design to the device width using `--mobile-unit`. At tablet widths above that breakpoint, the desktop composition scales from 1440px. Layered illustrations also use JavaScript and `ResizeObserver` where needed. Keep `mobile-design.css` last in the stylesheet order.
 
-Images and decorative SVGs originate from the supplied Figma design. Duplicate assets share local files, and artwork retains its original aspect ratio and crop settings.
+### Images and logos
 
-Montserrat and Cormorant Garamond are bundled locally. Headings use Apple Garamond when installed, with Garamond and bundled Cormorant Garamond as fallbacks. Small typography differences can occur across devices because a licensed Apple Garamond font file was not supplied.
+Replace files in `assets/`, or update their `src` attributes in `index.html`. Several images use positioned crop wrappers; replacements with different proportions may need CSS changes.
+
+Avoid applying rectangular `box-shadow` effects to transparent cutout wrappers. Those shadows have been removed from the header logo, hero product cutouts, and seminar presenter image.
+
+### Contact links
+
+Search `index.html` for the current destinations:
+
+| Channel   | Destination                             |
+| --------- | --------------------------------------- |
+| WhatsApp  | `https://wa.me/6281234226384`           |
+| Instagram | `https://www.instagram.com/lailibrand/` |
+| Facebook  | `https://www.facebook.com/lailibrand`   |
+| TikTok    | `https://www.tiktok.com/@lailibrand`    |
+
+Both partnership buttons use `https://link.lailibrand.id/GabungMitra`. The seminar button uses `https://link.lailibrand.id/IkutSeminar`. The footer contact number continues to open WhatsApp.
+
+### Fonts
+
+Montserrat is bundled locally, with its license in `assets/Montserrat-OFL.txt`. Apple Garamond and Poppins were not supplied as font files. Serif headings fall back to Garamond/Georgia, and Poppins falls back to Montserrat. Add appropriately licensed font files and update the CSS to match the original typography more closely.
+
+## Current scope and unfinished integrations
+
+### Video testimonials
+
+The testimonial section follows desktop Figma group `307:50` and mobile group `306:24`. It remains horizontally scrollable with touch, trackpad, keyboard focus, and arrow buttons. Each card has a portrait preview, the person's name, and “Mitra Laili Brand.” The complete video is shown without cropping in the playback dialog.
+
+Video files live in `assets/videos/`:
+
+| Name           | Video                | Preview              |
+| -------------- | -------------------- | -------------------- |
+| Bu Siti Rahmah | `bu-siti-rahmah.mp4` | `bu-siti-rahmah.jpg` |
+| Bu Sukriani    | `bu-sukriani.mp4`    | `bu-sukriani.jpg`    |
+| Bu Wahyu       | `bu-wahyu.mp4`       | `bu-wahyu.jpg`       |
+
+MP4 files load only after a visitor selects a card. They use H.264 video and AAC audio with the MP4 metadata at the beginning for faster startup. Bu Wahyu's larger source was compressed for easier upload; its full duration and 720p dimensions are retained. The other two videos retain their original encoded audio and video.
+
+To replace a video, replace its MP4 and JPG files, or edit the card's `data-video` and image `src` in `index.html`. Update its name in both the heading and `data-name` attribute. Keep `assets/videos/` in the same relative location when publishing. No separate video hosting service is needed. Additional caption tracks have not been authored.
+
+This is a promotional landing page. It does not include checkout, accounts, inventory management, form submission services, or payment processing.
+
+| Item                         | Current behavior                                                                                                                                |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Marketplace                  | Scrolls to the product showcase; no store is connected.                                                                                         |
+| Seminar registration         | Opens `https://link.lailibrand.id/IkutSeminar`.                                                                                                 |
+| Partnership and consultation | Both buttons open `https://link.lailibrand.id/GabungMitra`.                                                                                     |
+| Pillars “Learn more”         | Links to the pillars section; no separate details page exists.                                                                                  |
+| Footer utilities             | Shipping & Return, Privacy Policy, Term of Use, Wishlist, Compare, and Subscribe remain text labels without destination pages or functionality. |
+
+Confirm the phone number, social accounts, address, product information, and testimonials before publishing.
+
+## Publish
+
+Upload the contents of this folder to a static web host, keeping the directory structure intact. Use `index.html` as the entry document. No build command is required.
+
+After deployment, check that images, fonts, stylesheets, scripts, navigation anchors, and external links resolve correctly at the published URL.
+
+## Verification and maintenance
+
+The current implementation has been checked in Chrome at 320px, 390px, 412px, 430px, 760px, 768px, and 1440px widths for image loading, JavaScript errors, and page-wide horizontal overflow. The mobile menu opens and closes with its button, closes on navigation or Escape, and both carousels advance. The 412px page was visually compared with Figma mobile frame `104:532`. This is not a full cross-browser or accessibility audit.
+
+After changes, verify:
+
+1. Desktop and mobile text wrapping, spacing, and artwork crops.
+2. Catalogue links and section navigation.
+3. Both carousels using buttons, scrolling, and keyboard focus.
+4. Contact and social destinations.
+5. Missing asset requests and browser console errors.
+
+If an edit does not appear, reload the page or use a hard refresh to bypass cached stylesheets.
+
+## Asset rights
+
+Brand imagery and design content originate from the supplied Figma file. This README does not grant a license for those materials; confirm usage rights with the owner before redistribution. Montserrat's bundled license applies to the font separately.
