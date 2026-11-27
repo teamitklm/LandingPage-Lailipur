@@ -1,6 +1,0 @@
-<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="549" height="228" viewBox="0 0 549 228" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="stroke0_0_21" fill="white">
-<path d="M0 0C90.1116 26.1634 184.717 33.0889 277.678 20.3272L297.756 17.5709L341.983 12.4302C412.181 4.27067 483.306 13.6342 549 39.6837V228H403.362H113.231H0V0Z"/>
-</mask>
-<path id="Rectangle 378" d="M0 0V228H113.231H403.362H549V39.6837C483.306 13.6342 412.181 4.27067 341.983 12.4302L297.756 17.5709L277.678 20.3272C184.717 33.0889 90.1116 26.1634 0 0Z" stroke="#64141D" mask="url(#stroke0_0_21)"/>
-</svg>
